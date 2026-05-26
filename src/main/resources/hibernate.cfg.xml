@@ -1,0 +1,43 @@
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver </property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/hibernate_demo</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">U$@ID12345</property>
+
+        <!-- PSQL DIALECT -->
+
+        <!--
+    Tells Hibernate which database you are using.
+    Hibernate generates SQL according to PostgreSQL syntax.
+        -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- SHOW SQL IN CONSOLE -->
+        <!--
+            Displays generated SQL queries in terminal.
+            VERY useful for learning.
+        -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- AUTO TABLE CREATION -->
+
+        <!--
+            update:
+            Creates table if not exists.
+            Updates schema automatically.
+        -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- ENTITY CLASS MAPPING -->
+
+        <!--
+            Registers Student entity class
+            with Hibernate.
+        -->
+        <mapping class = "com.example.Student"/>
+
+
+</session-factory>
+</hibernate-configuration>
