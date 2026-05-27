@@ -39,5 +39,5 @@
         <mapping class = "com.example.Student"/>
 
 
-</session-factory>
+    </session-factory>
 </hibernate-configuration>

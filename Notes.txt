@@ -1,0 +1,278 @@
+    📘 HIBERNATE_Demo — COMPLETE REVISION NOTES (ORM + HIBERNATE BASICS)
+    ==============================================================
+
+    1. WHAT IS ORM (Object Relational Mapping)
+    ------------------------------------------
+    Definition:
+    ORM is a technique that maps Java Objects to Relational Database Tables.
+
+    It removes the need to manually write SQL queries.
+
+    Mapping Table:
+    Java           → Database
+    Class          → Table
+    Object         → Row
+    Variable       → Column
+
+    ORM FLOW:
+    Java Object
+       ↓
+    ORM Framework (Hibernate)
+       ↓
+    SQL Generated Automatically
+       ↓
+    JDBC
+       ↓
+    Database
+
+
+    PROBLEM BEFORE ORM (JDBC Issues):
+    - Too much boilerplate code
+    - Manual SQL writing
+    - Manual ResultSet → Object conversion
+    - Hard maintenance
+    - Database dependent code
+
+
+    ORM SOLUTION:
+    - No manual SQL (mostly)
+    - Automatic object mapping
+    - Cleaner code
+    - Faster development
+    - Database independence
+
+
+    2. WHAT IS HIBERNATE
+    --------------------
+    Hibernate is a Java ORM Framework.
+
+    It maps Java classes to database tables and handles all database operations internally using JDBC.
+
+    HIBERNATE KEY IDEA:
+    - You work with Objects
+    - Hibernate handles SQL + Database operations
+
+
+    HIBERNATE USES:
+    - JDBC internally
+    - SQL generation
+    - Connection handling
+    - Transaction management
+    - Object mapping
+
+
+    3. HIBERNATE ARCHITECTURE
+    -------------------------
+    CORE FLOW:
+    Application
+       ↓
+    Configuration (hibernate.cfg.xml)
+       ↓
+    SessionFactory
+       ↓
+    Session
+       ↓
+    Transaction
+       ↓
+    Database
+
+
+    COMPONENTS:
+
+    1. Configuration
+    - Reads hibernate.cfg.xml
+    - Loads DB settings
+
+    2. SessionFactory
+    - Heavy object
+    - Created once per application
+    - Creates Session objects
+
+    3. Session
+    - Main object for DB operations
+    - Like a connection bridge
+
+    4. Transaction
+    - Ensures safe DB operations
+    - commit / rollback
+
+
+    4. FIRST HIBERNATE PROJECT FLOW
+    -------------------------------
+    Main.java
+       ↓
+    Create Student Object
+       ↓
+    session.save(student)
+       ↓
+    Hibernate converts to SQL
+       ↓
+    PostgreSQL executes query
+       ↓
+    Data stored in table
+
+
+    5. ENTITY CLASS (Student.java)
+    ------------------------------
+    IMPORTANT ANNOTATIONS:
+
+    @Entity
+    - Marks class as a database table
+
+    @Table
+    - Defines table name
+
+    @Id
+    - Primary key
+
+
+    ENTITY RULES:
+    - Must have empty constructor
+    - Must have @Id field
+    - Must follow JavaBean structure (getters/setters)
+
+
+    ENTITY FLOW:
+    Java Class → Database Table
+    Object     → Row
+    Fields     → Columns
+
+
+    6. MAIN CLASS FLOW (Main.java)
+    -----------------------------
+    STEPS:
+
+    Step 1: Configuration
+    - Loads hibernate.cfg.xml
+
+    Step 2: SessionFactory
+    - Creates session factory
+
+    Step 3: Session
+    - Opens DB connection session
+
+    Step 4: Transaction
+    - Starts safe DB operation
+
+    Step 5: Save Object
+    - Converts object → SQL
+
+    Step 6: Commit
+    - Finalizes data into DB
+
+
+    MAIN FLOW DIAGRAM:
+    Student Object
+       ↓
+    session.save()
+       ↓
+    Hibernate ORM Engine
+       ↓
+    SQL Generated Automatically
+       ↓
+    PostgreSQL Database
+
+
+    7. HIBERNATE CONFIG FILE (hibernate.cfg.xml)
+    -------------------------------------------
+    PURPOSE:
+    - DB connection setup
+    - Dialect selection
+    - Entity registration
+    - Auto table creation
+
+
+    IMPORTANT PROPERTIES:
+
+    DB CONNECTION:
+    - driver_class
+    - url
+    - username
+    - password
+
+
+    DIALECT:
+    Tells Hibernate which DB is used
+
+    Examples:
+    - PostgreSQLDialect
+    - MySQLDialect
+
+
+    show_sql:
+    - Displays generated SQL in console
+
+
+    hbm2ddl.auto:
+    Controls table creation
+
+    Value        Meaning
+    --------------------------------
+    update       Update schema automatically
+    create       Create fresh tables
+    validate     Only validate schema
+
+
+    8. REAL EXECUTION FLOW (WHAT HAPPENS)
+    -------------------------------------
+    1. Hibernate Started
+       → Framework loaded successfully
+
+    2. Database Connected
+       → PostgreSQL connection successful
+
+    3. Table Created Automatically
+       → create table students
+
+    4. Data Inserted Automatically
+       → insert into students (id, name, course)
+
+
+    9. IMPORTANT HIBERNATE CONCEPTS
+    ------------------------------
+    Persistence:
+    - Object saved permanently in database
+
+    Session:
+    - Temporary connection between Java and DB
+
+    Transaction:
+    - Ensures safe execution (commit / rollback)
+
+
+    ENTITY STATES:
+    ------------------------------------------------
+    State       Meaning
+    ------------------------------------------------
+    Transient   Not in DB
+    Persistent  Managed by Hibernate
+    Detached    Disconnected
+    Removed     Deleted
+
+
+    10. WHAT YOU ACHIEVED
+    ---------------------
+    ✔ Hibernate setup with Maven
+    ✔ PostgreSQL connection
+    ✔ Entity mapping
+    ✔ Automatic table creation
+    ✔ Automatic SQL generation
+    ✔ Data persistence
+
+
+    11. FINAL MENTAL MODEL
+    ----------------------
+    You write Java Objects
+            ↓
+    Hibernate converts to SQL
+            ↓
+    Database stores data
+
+
+
+    | CRUD   | Hibernate                  |
+    | ------ | -------------------------- |
+    | Create | `persist()`                |
+    | Read   | `get()`                    |
+    | Update | `merge()` / dirty checking |
+    | Delete | `remove()`                 |

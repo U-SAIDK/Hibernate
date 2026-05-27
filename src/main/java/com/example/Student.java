@@ -8,7 +8,6 @@ import jakarta.persistence.Table;
 // Means: This Java class will be mapped to a database table.
 @Entity
 
-
 // @Table -> Specifies the database table name.
 @Table(name = "students")
 
@@ -65,7 +64,7 @@ public Student(int id, String name, String course) {
         this.course = course;
     }
 
-//toString() -> HelpFull for Printing object (values instead of address)
+// toString() -> HelpFull for Printing object (values instead of address)
 @Override
 public String toString() {
     return "Student{" +
