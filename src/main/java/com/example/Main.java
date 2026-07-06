@@ -1,17 +1,17 @@
 ///  ORM (OBject-Relational Mapping) is a Technique used to Map Java Objects to Database Tables
-// It Allows developers to work with db using oop concepts instead of Raw Queries
+//   It Allows developers to work with db using oop concepts instead of Raw Queries
 //        | Java     | Database |
 //        | -------- | -------- |
 //        | Class    | Table    |
 //        | Object   | Row      |
 //        | Variable | Column   |
-// Java Object -> ORM Framework (Hibernate) -> SQL Generated Automatically -> JDBC -> DB
-// Hibernate is a Popular java ORM Framework.
+//  Java Object -> ORM Framework (Hibernate) -> SQL Generated Automatically -> JDBC -> DB
+//  Hibernate is a Popular java ORM Framework.
 
 /// JPA :- Java Persistence Api (Persistence -> Permanently save)
-// JPA Provides certain Rules & it is a Way to Achieve ORM ,TO use JPA persistence Provider is Needed
-// Persistence Provider is a specific implementation of JPA ; Ex:- Hibernate , Open JPA
-// These providers implement JPA interfaces & provide underlying Functionality to interact with DB
+//  JPA Provides certain Rules & it is a Way to Achieve ORM ,TO use JPA persistence Provider is Needed
+//  Persistence Provider is a specific implementation of JPA ; Ex:- Hibernate , Open JPA
+//  These providers implement JPA interfaces & provide underlying Functionality to interact with DB
 
 
 
