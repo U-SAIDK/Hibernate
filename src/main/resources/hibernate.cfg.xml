@@ -1,43 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Central Hibernate configuration.
+
+    This single file replaces what, in Spring Boot, you would normally write in
+    application.properties (spring.datasource.* / spring.jpa.*). Every entity used
+    by the course examples is registered here so a single SessionFactory can serve
+    all of them.
+-->
 <hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
     <session-factory>
 
-        <property name="hibernate.connection.driver_class">org.postgresql.Driver </property>
+        <!-- ============ DATABASE CONNECTION ============ -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/hibernate_demo</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">U$@ID12345</property>
 
-        <!-- PSQL DIALECT -->
-
-        <!--
-    Tells Hibernate which database you are using.
-    Hibernate generates SQL according to PostgreSQL syntax.
-        -->
+        <!-- Dialect is auto-detected in Hibernate 6, but stating it is explicit and clear. -->
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
-        <!-- SHOW SQL IN CONSOLE -->
-        <!--
-            Displays generated SQL queries in terminal.
-            VERY useful for learning.
-        -->
+        <!-- ============ DEVELOPER-FRIENDLY LOGGING ============ -->
+        <!-- Print the SQL Hibernate generates. Invaluable while learning. -->
         <property name="hibernate.show_sql">true</property>
+        <!-- Pretty-print that SQL. -->
+        <property name="hibernate.format_sql">true</property>
+        <!-- Show bound parameter values as SQL comments. -->
+        <property name="hibernate.highlight_sql">true</property>
 
-        <!-- AUTO TABLE CREATION -->
-
+        <!-- ============ SCHEMA MANAGEMENT ============ -->
         <!--
-            update:
-            Creates table if not exists.
-            Updates schema automatically.
+            update  = create tables if missing, add new columns; never drops data.
+            Great for learning. In real projects prefer 'validate' + Flyway/Liquibase.
         -->
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <!-- ENTITY CLASS MAPPING -->
+        <!-- ============ ENTITY REGISTRATION ============ -->
+        <!-- Basics -->
+        <mapping class="com.example.model.Student"/>
 
-        <!--
-            Registers Student entity class
-            with Hibernate.
-        -->
-        <mapping class = "com.example.Student"/>
+        <!-- Identifier generation -->
+        <mapping class="com.example.identifiers.IdentityEntity"/>
+        <mapping class="com.example.identifiers.SequenceEntity"/>
+        <mapping class="com.example.identifiers.UuidEntity"/>
 
+        <!-- Relationships -->
+        <mapping class="com.example.relationships.onetoone.Person"/>
+        <mapping class="com.example.relationships.onetoone.Passport"/>
+        <mapping class="com.example.relationships.onetomany.Department"/>
+        <mapping class="com.example.relationships.onetomany.Employee"/>
+        <mapping class="com.example.relationships.manytoone.Customer"/>
+        <mapping class="com.example.relationships.manytoone.OrderEntry"/>
+        <mapping class="com.example.relationships.manytomany.Author"/>
+        <mapping class="com.example.relationships.manytomany.Book"/>
+
+        <!-- Locking -->
+        <mapping class="com.example.locking.Account"/>
 
     </session-factory>
 </hibernate-configuration>
