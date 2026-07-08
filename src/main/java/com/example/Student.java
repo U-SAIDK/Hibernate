@@ -7,9 +7,10 @@ import jakarta.persistence.Table;
 // @Entity -> Marks this class as a Hibernate Entity.
 // Means: This Java class will be mapped to a database table.
 @Entity
+// @Table -> Specifies the database table name if you don't specify
+//           it will take class name as table name by default
 
-// @Table -> Specifies the database table name.
-@Table(name = "students")
+
 
 public class Student {
 
@@ -27,6 +28,7 @@ public class Student {
 // Hibernate REQUIREMENT
     public Student() {
                      }
+
 // Parameterized Constructor
 public Student(int id, String name, String course) {
     this.id = id;

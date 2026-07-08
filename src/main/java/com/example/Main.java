@@ -1,5 +1,6 @@
 ///  ORM (OBject-Relational Mapping) is a Technique used to Map Java Objects to Database Tables
 //   It Allows developers to work with db using oop concepts instead of Raw Queries
+//  It Allows developers to work with db using oop concepts instead of Raw Queries
 //        | Java     | Database |
 //        | -------- | -------- |
 //        | Class    | Table    |
@@ -135,9 +136,6 @@ public class Main {
        } else {System.out.println("\nStudent NOT FOUND!");}
 
         tx.commit(); // Commit DELETE Changes
-
-
-
 
 /// STEP 8:- Close session
        session.close();

@@ -9,6 +9,7 @@
     It removes the need to manually write SQL queries.
 
     Mapping Table:
+
     Java           → Database
     Class          → Table
     Object         → Row
