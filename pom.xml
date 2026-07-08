@@ -5,39 +5,54 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>Hibernate_Demo</artifactId>
+    <artifactId>hibernate-course</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <!-- Java 17 is the current LTS and the baseline used by modern Spring Boot 3.x. -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-    <dependencies>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.7.11</version>
-            <scope>compile</scope>
-        </dependency>
+        <hibernate.version>6.6.4.Final</hibernate.version>
+        <postgresql.version>42.7.4</postgresql.version>
+        <lombok.version>1.18.34</lombok.version>
+    </properties>
+
+    <dependencies>
+        <!-- Hibernate ORM (stable 6.x). Brings in Jakarta Persistence (jakarta.persistence.*),
+             the exact same JPA API that Spring Data JPA is built on. -->
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>8.0.0.Alpha1</version>
-            <scope>compile</scope>
+            <version>${hibernate.version}</version>
         </dependency>
+
+        <!-- PostgreSQL JDBC driver. -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
+
+        <!-- Lombok: removes getter/setter/constructor boilerplate from entities.
+             Used heavily in real Spring Boot projects, so we practice it here. -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.46</version>
-            <scope>compile</scope>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Lets you run any demo with: mvn exec:java -Dexec.mainClass=... -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
